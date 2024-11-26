@@ -60,7 +60,7 @@ def baseline_model(fsi, ws, ds, hs, pallet_dims, tlim=None, num_workers=4):
     for i in range(n_items):
         model.Add(
             cp_model.LinearExpr.Sum(
-                fsi[s, i] * zsl[s, l] for s in range(n_superitems) for l in range(max_layers)
+                list(fsi[s, i] * zsl[s, l] for s in range(n_superitems) for l in range(max_layers))
             )
             == 1
         )
@@ -74,7 +74,7 @@ def baseline_model(fsi, ws, ds, hs, pallet_dims, tlim=None, num_workers=4):
     # a layer to fit within the area of a bin
     model.Add(
         cp_model.LinearExpr.Sum(
-            ws[s] * ds[s] * zsl[s, l] for l in range(max_layers) for s in range(n_superitems)
+            list(ws[s] * ds[s] * zsl[s, l] for l in range(max_layers) for s in range(n_superitems))
         )
         <= pallet_dims.area
     )
@@ -111,7 +111,7 @@ def baseline_model(fsi, ws, ds, hs, pallet_dims, tlim=None, num_workers=4):
                     ).OnlyEnforceIf([same[s, j, l]])
 
     # Minimize the sum of layer heights
-    obj = cp_model.LinearExpr.Sum(ol[l] for l in range(max_layers))
+    obj = cp_model.LinearExpr.Sum(list(ol[l] for l in range(max_layers)))
     model.Minimize(obj)
 
     # Search by biggest area first
