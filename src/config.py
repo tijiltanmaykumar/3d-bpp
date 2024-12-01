@@ -13,6 +13,9 @@ PALLET_HEIGHT = CONTAINER_HEIGHT - 145  # 145 is the height of the pallet itself
 PALLET_LOAD = 2490
 PALLET_DIMS = utils.Dimension(PALLET_WIDTH, PALLET_DEPTH, PALLET_HEIGHT, PALLET_LOAD)
 
+# Number of ULDs
+NUM_ULDS = 6
+
 # Product dimension ranges (mm and kg)
 NUM_PRODUCTS = int(1e6)
 MIN_PRODUCT_WIDTH = 50
