@@ -100,7 +100,7 @@ class BinPool:
     """
     A pool of bins is a collection of bins
     """
-
+    output_bins = 0
     def __init__(self, layer_pool, pallet_dims, singles_removed=None, two_dims=False, area_tol=1.0):
         self.layer_pool = layer_pool
         self.pallet_dims = pallet_dims
@@ -132,11 +132,12 @@ class BinPool:
 
             # Open a new bin
             if not placed:
-                if (len(bins) == num_ulds):
+                if ((output_bins) == 6):
                     return bins
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
+                output_bins += 1
         
-        print("debug output of len of bins : ", len(bins))
+        print("debug output of len of bins : ", output_bins)
         return bins
 
     def _place_not_covered(self, singles_removed=None, area_tol=1.0):
