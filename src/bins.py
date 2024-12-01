@@ -133,7 +133,7 @@ class BinPool:
             # Open a new bin
             if not placed:
                 if (len(bins) == num_ulds):
-                    break
+                    return bins
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
 
         return bins
