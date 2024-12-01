@@ -135,7 +135,7 @@ class BinPool:
                 if (len(bins) == num_ulds):
                     return bins
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
-
+        print("length of bins we are debugging: ", len(bins))
         return bins
 
     def _place_not_covered(self, singles_removed=None, area_tol=1.0):
