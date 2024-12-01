@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 import utils, superitems, maxrects, layers
+from config import NUM_ULDS as num_ulds
 
 
 class Bin:
@@ -131,6 +132,8 @@ class BinPool:
 
             # Open a new bin
             if not placed:
+                if (len(bins) == num_ulds):
+                    break
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
 
         return bins
