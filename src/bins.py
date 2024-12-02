@@ -133,8 +133,8 @@ class BinPool:
             # Open a new bin
             if not placed:
                 ## HEYY THIS IS MY DIRTY WORK
-                if ((output_bins) == 6):
-                    return bins
+                #if ((output_bins) == 6):
+                #   return bins
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
                 output_bins += 1
 
