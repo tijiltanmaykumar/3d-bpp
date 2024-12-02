@@ -132,11 +132,13 @@ class BinPool:
 
             # Open a new bin
             if not placed:
+                ## HEYY THIS IS MY DIRTY WORK
                 if ((output_bins) == 6):
                     return bins
                 bins += [Bin(layer_pool.subset([i]), self.pallet_dims)]
                 output_bins += 1
-        
+
+        ## HEYY THIS IS MY DIRTY WORK
         print("debug output of len of bins : ", output_bins)
         return bins
 
