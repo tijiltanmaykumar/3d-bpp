@@ -34,7 +34,7 @@ def maxrects_multiple_layers(superitems_pool, pallet_dims, add_single=True):
                 bin_algo=PackingBin.Global,
                 pack_algo=strategy,
                 sort_algo=SORT_AREA,
-                rotation=False,
+                rotation=True,
             )
 
             # Add an infinite number of layers (no upper bound)
