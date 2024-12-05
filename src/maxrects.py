@@ -102,7 +102,7 @@ def maxrects_single_layer_offline(superitems_pool, pallet_dims, superitems_in_la
             bin_algo=PackingBin.Global,
             pack_algo=strategy,
             sort_algo=SORT_AREA,
-            rotation=False,
+            rotation=True,
         )
 
         # Add one bin representing one layer
@@ -155,7 +155,7 @@ def maxrects_single_layer_online(superitems_pool, pallet_dims, superitems_duals=
         packer = newPacker(
             mode=PackingMode.Online,
             pack_algo=strategy,
-            rotation=False,
+            rotation=True,
         )
 
         # Add one bin representing one layer
