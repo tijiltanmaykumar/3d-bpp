@@ -41,9 +41,16 @@ def maxrects_multiple_layers(superitems_pool, pallet_dims, add_single=True):
             packer.add_bin(pallet_dims.width, pallet_dims.depth, count=float("inf"))
 
             # Add superitems to be packed
-            ws, ds, _ = superitems_pool.get_superitems_dims()
-            for i, (w, d) in enumerate(zip(ws, ds)):
+            ws, ds, hs = superitems_pool.get_superitems_dims()
+            for i, (w, d, h) in enumerate(zip(ws, ds, hs)):
                 packer.add_rect(w, d, rid=i)
+                packer.add_rect(d, w, rid=i)
+                packer.add_rect(w, h, rid=i)
+                packer.add_rect(h, w, rid=i)
+                packer.add_rect(h, d, rid=i)
+                packer.add_rect(d, h, rid=i)
+                
+                
 
             # Start the packing procedure
             packer.pack()
@@ -94,7 +101,7 @@ def maxrects_single_layer_offline(superitems_pool, pallet_dims, superitems_in_la
     logger.debug(f"MR-SL-Offline {superitems_in_layer}/{len(superitems_pool)} superitems to place")
 
     # Iterate over each placement strategy
-    ws, ds, _ = superitems_pool.get_superitems_dims()
+    ws, ds, hs = superitems_pool.get_superitems_dims()
     for strategy in MAXRECTS_PACKING_STRATEGIES:
         # Create the maxrects packing algorithm
         packer = newPacker(
@@ -111,6 +118,11 @@ def maxrects_single_layer_offline(superitems_pool, pallet_dims, superitems_in_la
         # Add superitems to be packed
         for i in superitems_in_layer:
             packer.add_rect(ws[i], ds[i], rid=i)
+            packer.add_rect(ds[i], ws[i], rid=i)
+            packer.add_rect(ws[i], hs[i], rid=i)
+            packer.add_rect(hs[i], ws[i], rid=i)
+            packer.add_rect(hs[i], ds[i], rid=i)
+            packer.add_rect(ds[i], hs[i], rid=i)
 
         # Start the packing procedure
         packer.pack()
