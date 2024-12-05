@@ -42,13 +42,13 @@ def maxrects_multiple_layers(superitems_pool, pallet_dims, add_single=True):
 
             # Add superitems to be packed
             ws, ds, hs = superitems_pool.get_superitems_dims()
-            for i, (w, d, h) in enumerate(zip(ws, ds, hs)):
+            for i, (w, d) in enumerate(zip(ws, ds)):
                 packer.add_rect(w, d, rid=i)
-                packer.add_rect(d, w, rid=i)
-                packer.add_rect(w, h, rid=i)
-                packer.add_rect(h, w, rid=i)
-                packer.add_rect(h, d, rid=i)
-                packer.add_rect(d, h, rid=i)
+                # packer.add_rect(d, w, rid=i)
+                # packer.add_rect(w, h, rid=i)
+                # packer.add_rect(h, w, rid=i)
+                # packer.add_rect(h, d, rid=i)
+                # packer.add_rect(d, h, rid=i)
                 
                 
 
@@ -118,11 +118,11 @@ def maxrects_single_layer_offline(superitems_pool, pallet_dims, superitems_in_la
         # Add superitems to be packed
         for i in superitems_in_layer:
             packer.add_rect(ws[i], ds[i], rid=i)
-            packer.add_rect(ds[i], ws[i], rid=i)
-            packer.add_rect(ws[i], hs[i], rid=i)
-            packer.add_rect(hs[i], ws[i], rid=i)
-            packer.add_rect(hs[i], ds[i], rid=i)
-            packer.add_rect(ds[i], hs[i], rid=i)
+            # packer.add_rect(ds[i], ws[i], rid=i)
+            # packer.add_rect(ws[i], hs[i], rid=i)
+            # packer.add_rect(hs[i], ws[i], rid=i)
+            # packer.add_rect(hs[i], ds[i], rid=i)
+            # packer.add_rect(ds[i], hs[i], rid=i)
 
         # Start the packing procedure
         packer.pack()
